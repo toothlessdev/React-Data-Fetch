@@ -20,7 +20,7 @@ const PostContainer = styled.div<{ children: React.ReactNode }>`
     }
 `;
 
-export const Post: React.FC<IPost> = ({ id, title, body, tags }) => {
+export const Post: React.FC<IPost> = ({ title, body, tags }) => {
     return (
         <PostContainer>
             <h1>{title}</h1>
