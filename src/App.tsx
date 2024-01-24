@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { createBrowserRouter } from "react-router-dom";
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import { Error } from "./components/Error";
+
+import HomePage from "./pages/HomePage";
+import InternalHooksPage from "./pages/InternalHooksPage";
+import CustomHooksPage from "./pages/CustomHooksPage";
+
+export default function App() {
+    return (
+        <ErrorBoundary fallback={<Error />}>
+            <RouterProvider router={router} />
+        </ErrorBoundary>
+    );
 }
 
-export default App
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <HomePage />,
+    },
+    {
+        path: "/internal-hooks",
+        element: <InternalHooksPage />,
+    },
+    {
+        path: "/custom-hooks",
+        element: <CustomHooksPage />,
+    },
+]);
