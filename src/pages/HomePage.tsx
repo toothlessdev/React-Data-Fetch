@@ -3,15 +3,23 @@ import styled from "styled-components";
 
 export default function HomePage() {
     return (
-        <LinkContainer>
-            <Link to="/internal-hooks">1. 내장 훅 (useState, useEffect) 사용하기</Link>
-            <Link to="/custom-hooks">2. 커스텀 훅 (useFetch) 으로 만들어 사용하기</Link>
-            <Link to="/redux-thunk">3. Redux Thunk 사용하기</Link>
-            <Link to="/redux-saga">4. useState, useEffect 사용하기</Link>
-            <Link to="/tanstack-react-query">5. useState, useEffect 사용하기</Link>
-        </LinkContainer>
+        <>
+            <Title>React Data Fetch</Title>
+            <LinkContainer>
+                <Link to="/internal-hooks">1. 내장 훅 (useState, useEffect) 사용하기</Link>
+                <Link to="/custom-hooks">2. 커스텀 훅 (useFetch) 사용하기</Link>
+                <Link to="/redux-thunk-actions">3. Redux Thunk Action 사용하기</Link>
+                <Link to="/redux-create-async-thunk">4. Redux createAsyncThunk 사용하기</Link>
+            </LinkContainer>
+        </>
     );
 }
+
+const Title = styled.h1`
+    margin: 30px 0px;
+    color: #fff;
+    text-align: center;
+`;
 
 const LinkContainer = styled.div`
     a {

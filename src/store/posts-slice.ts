@@ -1,0 +1,34 @@
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IGetAllPostsResponseBody } from "../types/request";
+
+interface IPostSlice {
+    isPending: boolean;
+    data: IGetAllPostsResponseBody | null;
+    error: unknown;
+}
+
+const initialState: IPostSlice = {
+    isPending: false,
+    data: null,
+    error: null,
+};
+
+export const postSlice = createSlice({
+    name: "post-slice",
+
+    initialState,
+
+    reducers: {
+        setIsPending: (state, action: PayloadAction<boolean>) => {
+            state.isPending = action.payload;
+        },
+        setData: (state, action: PayloadAction<IGetAllPostsResponseBody | null>) => {
+            state.data = action.payload;
+        },
+        setError: (state, action: PayloadAction<unknown>) => {
+            state.error = action.payload;
+        },
+    },
+});
+
+export const PostAction = postSlice.actions;
