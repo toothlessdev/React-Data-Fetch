@@ -10,6 +10,7 @@ export default function HomePage() {
                 <Link to="/custom-hooks">2. 커스텀 훅 (useFetch) 사용하기</Link>
                 <Link to="/redux-thunk-actions">3. Redux Thunk Action 사용하기</Link>
                 <Link to="/redux-create-async-thunk">4. Redux createAsyncThunk 사용하기</Link>
+                <Link to="/redux-saga">4. Redux Saga 사용하기</Link>
             </LinkContainer>
         </>
     );

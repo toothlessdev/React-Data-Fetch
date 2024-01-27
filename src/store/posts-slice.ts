@@ -1,5 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IGetAllPostsResponseBody } from "../types/request";
+import { FetchPosts } from "./actions/posts-actions";
 
 interface IPostSlice {
     isPending: boolean;
@@ -28,6 +29,19 @@ export const postSlice = createSlice({
         setError: (state, action: PayloadAction<unknown>) => {
             state.error = action.payload;
         },
+    },
+    extraReducers: (builder: ActionReducerMapBuilder<IPostSlice>) => {
+        builder
+            .addCase(FetchPosts.pending, (state) => {
+                state.isPending = true;
+            })
+            .addCase(FetchPosts.fulfilled, (state, action: PayloadAction<IGetAllPostsResponseBody>) => {
+                state.data = action.payload;
+                state.isPending = false;
+            })
+            .addCase(FetchPosts.rejected, (state) => {
+                state.isPending = false;
+            });
     },
 });
 

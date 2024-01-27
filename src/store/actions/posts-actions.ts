@@ -1,4 +1,4 @@
-import { Dispatch } from "@reduxjs/toolkit";
+import { Dispatch, createAsyncThunk } from "@reduxjs/toolkit";
 import { PostAction } from "../posts-slice";
 import { IGetAllPostsResponseBody, API_URL } from "../../types/request";
 
@@ -16,3 +16,12 @@ export const FetchPostsThunk = () => {
         }
     };
 };
+
+export const FetchPosts = createAsyncThunk("posts/fetch-posts", async (args, { rejectWithValue }) => {
+    try {
+        const response = await fetch(API_URL);
+        return response.json();
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+});
